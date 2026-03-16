@@ -1,0 +1,2401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XING Mobility — The World's Most Sought-After Battery Platform</title>
+  <meta name="description" content="Revolutionary immersion-cooled battery technology delivering unmatched power density, intrinsic safety, and manufacturing flexibility. Engineered in Taiwan.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/style.min.css" rel="stylesheet">
+  <style>
+/* ============================================
+   XING Mobility — Redesign 2026
+   Color: Black / Silver / White / Blue
+   Style: Anduril-inspired minimal
+   ============================================ */
+
+/* --- Reset & Base --- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #0a0a0a;
+  --black-light: #141414;
+  --black-card: #1a1a1a;
+  --silver: #a0a0a0;
+  --silver-light: #c8c8c8;
+  --white: #f0f0f0;
+  --white-pure: #ffffff;
+  --blue: #0066ff;
+  --blue-light: #3388ff;
+  --blue-dark: #0044cc;
+  --blue-glow: rgba(0, 102, 255, 0.15);
+
+  --font-main: 'Geist Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Geist Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --container: 1280px;
+  --gap: 24px;
+  --section-pad: 120px;
+  --header-h: 72px;
+
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--black);
+  color: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
+ul, ol { list-style: none; }
+button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--white-pure);
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+h2 { font-size: clamp(2rem, 3.5vw, 3.5rem); }
+h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); }
+h4 { font-size: clamp(1rem, 1.5vw, 1.25rem); }
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: var(--silver);
+  line-height: 1.7;
+  max-width: 640px;
+}
+
+/* --- Header --- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.3s var(--ease);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.header__logo svg {
+  height: 40px;
+  width: auto;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.header__nav a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--silver);
+  letter-spacing: 0.02em;
+  transition: color 0.25s var(--ease);
+  position: relative;
+}
+
+.header__nav a:hover,
+.header__nav a.active {
+  color: var(--white-pure);
+}
+
+.header__nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--blue);
+  transition: width 0.3s var(--ease-out);
+}
+
+.header__nav a:hover::after {
+  width: 100%;
+}
+
+.header__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--white-pure);
+  background: var(--blue);
+  border-radius: 4px;
+  transition: all 0.25s var(--ease);
+}
+
+.header__cta:hover {
+  background: var(--blue-light);
+  transform: translateY(-1px);
+}
+
+/* Mobile menu toggle */
+.header__menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+}
+
+.header__menu-btn span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--white);
+  transition: all 0.3s var(--ease);
+}
+
+/* --- Header: Light mode (on white hero) --- */
+.header--light {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+.header--light .header__logo svg path { fill: var(--black); }
+.header--light .header__nav a { color: #666; }
+.header--light .header__nav a:hover,
+.header--light .header__nav a.active { color: var(--black); }
+.header--light .header__menu-btn span { background: var(--black); }
+
+/* --- Hero Section (White) --- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: var(--header-h);
+  background: var(--white-pure);
+  color: var(--black);
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.3) 100%);
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 48px;
+  width: 100%;
+}
+
+.hero__label {
+  margin-bottom: 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s var(--ease-out) 0.3s forwards;
+  color: var(--blue);
+}
+
+.hero__title {
+  margin-bottom: 24px;
+  max-width: 800px;
+  color: var(--black);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s var(--ease-out) 0.5s forwards;
+}
+
+.hero__subtitle {
+  margin-bottom: 48px;
+  color: #555;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s var(--ease-out) 0.7s forwards;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s var(--ease-out) 0.9s forwards;
+}
+
+.hero .btn--outline {
+  color: var(--black);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.hero .btn--outline:hover {
+  border-color: var(--black);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* Slide indicators */
+.hero__indicators {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 12px;
+}
+
+.hero__indicators button {
+  width: 48px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 1px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero__indicators button.active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--blue);
+  animation: indicatorFill 6s linear forwards;
+}
+
+@keyframes indicatorFill {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Carousel Slides */
+.hero__slides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+
+.hero__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hero__slide__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__slide__overlay {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: none;
+}
+
+/* Carousel Arrow Buttons */
+.hero__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #222;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.hero__arrow:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.15);
+}
+
+.hero__arrow svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.hero__arrow--prev {
+  left: 40px;
+}
+
+.hero__arrow--next {
+  right: 40px;
+}
+
+@media (max-width: 768px) {
+  .hero__arrow {
+    width: 40px;
+    height: 40px;
+  }
+  .hero__arrow--prev { left: 16px; }
+  .hero__arrow--next { right: 16px; }
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 4px;
+  transition: all 0.3s var(--ease);
+}
+
+.btn--primary {
+  background: var(--blue);
+  color: var(--white-pure);
+}
+
+.btn--primary:hover {
+  background: var(--blue-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 102, 255, 0.25);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--white-pure);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn--outline:hover {
+  border-color: var(--white-pure);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.btn__arrow {
+  transition: transform 0.3s var(--ease);
+}
+
+.btn:hover .btn__arrow {
+  transform: translateX(4px);
+}
+
+/* --- Section Common --- */
+.section {
+  padding: var(--section-pad) 0;
+  position: relative;
+}
+
+.section--dark {
+  background: var(--black);
+}
+
+.section--darker {
+  background: var(--black-light);
+}
+
+.section__header {
+  margin-bottom: 64px;
+}
+
+.section__header .label {
+  margin-bottom: 16px;
+}
+
+.section__header h2 {
+  margin-bottom: 20px;
+}
+
+/* Divider line */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* --- Holographic Card System --- */
+.holo-card {
+  --holo-x: 50%;
+  --holo-y: 50%;
+  --holo-opacity: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #141418 0%, #1c1c24 50%, #141418 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: transform 0.5s var(--ease-out), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+/* Holographic rainbow sheen */
+.holo-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    600px circle at var(--holo-x) var(--holo-y),
+    rgba(0, 102, 255, 0.12),
+    rgba(120, 180, 255, 0.08) 25%,
+    rgba(200, 220, 255, 0.04) 40%,
+    transparent 60%
+  );
+  opacity: var(--holo-opacity);
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Specular highlight (bright spot) */
+.holo-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    200px circle at var(--holo-x) var(--holo-y),
+    rgba(255, 255, 255, 0.07),
+    transparent 60%
+  );
+  opacity: var(--holo-opacity);
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: overlay;
+}
+
+/* Holographic edge glow */
+.holo-card:hover {
+  border-color: rgba(140, 180, 255, 0.15);
+  box-shadow:
+    0 0 0 1px rgba(100, 160, 255, 0.06),
+    0 8px 40px -8px rgba(0, 60, 180, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Silver metallic shimmer strip */
+.holo-card .holo-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(200, 210, 230, 0.03) 30%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(200, 210, 230, 0.03) 70%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  z-index: 3;
+  transition: left 0.8s var(--ease-out);
+}
+
+.holo-card:hover .holo-shimmer {
+  left: 130%;
+}
+
+/* Content layer stays above effects */
+.holo-card > *:not(.holo-shimmer) {
+  position: relative;
+  z-index: 4;
+}
+
+/* --- Why XING — 4 Pillars --- */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+}
+
+.pillar {
+  padding: 40px 32px;
+}
+
+.pillar::after {
+  /* Override holo-card ::after for pillar top-line */
+}
+
+.pillar .pillar__topline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--blue), rgba(120, 180, 255, 0.6));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+  z-index: 5;
+}
+
+.pillar:hover .pillar__topline {
+  transform: scaleX(1);
+}
+
+.pillar__icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+}
+
+.pillar__icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.pillar__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--white-pure);
+  margin-bottom: 8px;
+}
+
+.pillar__headline {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+
+.pillar__text {
+  font-size: 0.9375rem;
+  color: var(--silver);
+  line-height: 1.7;
+}
+
+/* --- Markets Grid --- */
+.markets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+}
+
+.market-card {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.market-card__img {
+  position: absolute;
+  inset: 0;
+}
+
+.market-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.market-card:hover .market-card__img img {
+  transform: scale(1.05);
+}
+
+.market-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10,10,10,0.95) 100%);
+  transition: background 0.4s var(--ease);
+}
+
+.market-card:hover .market-card__overlay {
+  background: linear-gradient(180deg, transparent 20%, rgba(0,30,80,0.9) 100%);
+}
+
+.market-card__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 24px;
+}
+
+.market-card__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white-pure);
+  margin-bottom: 8px;
+}
+
+.market-card__desc {
+  font-size: 0.875rem;
+  color: var(--silver-light);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.market-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--blue);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s var(--ease-out);
+}
+
+.market-card:hover .market-card__link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Platforms --- */
+.platforms {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+}
+
+.platform-card {
+  padding: 40px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.platform-card__name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+}
+
+.platform-card__title {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--white-pure);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.platform-card__focus {
+  font-size: 0.875rem;
+  color: var(--silver);
+  line-height: 1.7;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.platform-card__spec {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.platform-card__spec-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white-pure);
+  letter-spacing: -0.03em;
+}
+
+.platform-card__spec-unit {
+  font-size: 0.8125rem;
+  color: var(--silver);
+}
+
+/* --- News & Whitepapers --- */
+.news-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.news-item {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s var(--ease);
+}
+
+.news-item:hover {
+  padding-left: 8px;
+}
+
+.news-item__img {
+  width: 120px;
+  min-width: 120px;
+  height: 80px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--black-card);
+}
+
+.news-item__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.news-item__date {
+  font-size: 0.75rem;
+  color: var(--silver);
+  margin-bottom: 4px;
+}
+
+.news-item__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white-pure);
+  line-height: 1.4;
+}
+
+.whitepaper-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.whitepaper-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+}
+
+.whitepaper-item__icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-glow);
+  border-radius: 8px;
+  color: var(--blue);
+  flex-shrink: 0;
+}
+
+.whitepaper-item__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white-pure);
+  margin-bottom: 4px;
+}
+
+.whitepaper-item__desc {
+  font-size: 0.875rem;
+  color: var(--silver);
+}
+
+/* --- Partners --- */
+.partners-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
+  flex-wrap: wrap;
+  padding: 40px 0;
+}
+
+.partners-logos img {
+  height: 32px;
+  opacity: 0.4;
+  filter: grayscale(1) brightness(2);
+  transition: all 0.3s var(--ease);
+}
+
+.partners-logos img:hover {
+  opacity: 0.9;
+  filter: grayscale(0) brightness(1);
+}
+
+/* --- CTA Banner --- */
+.cta-banner {
+  text-align: center;
+  padding: 100px 48px;
+  background: linear-gradient(180deg, var(--black) 0%, rgba(0, 40, 120, 0.15) 50%, var(--black) 100%);
+}
+
+.cta-banner h2 {
+  margin-bottom: 20px;
+}
+
+.cta-banner .subtitle {
+  margin: 0 auto 40px;
+}
+
+.cta-banner__actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* --- Footer --- */
+.footer {
+  padding: 80px 0 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 64px;
+}
+
+.footer__brand p {
+  font-size: 0.875rem;
+  color: var(--silver);
+  line-height: 1.7;
+  margin-top: 20px;
+  max-width: 300px;
+}
+
+.footer__brand svg {
+  height: 36px;
+}
+
+.footer__col-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--silver);
+  margin-bottom: 20px;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__links a {
+  font-size: 0.875rem;
+  color: var(--silver);
+  transition: color 0.2s var(--ease);
+}
+
+.footer__links a:hover {
+  color: var(--white-pure);
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer__bottom p {
+  font-size: 0.8125rem;
+  color: rgba(160, 160, 160, 0.6);
+}
+
+.footer__social {
+  display: flex;
+  gap: 20px;
+}
+
+.footer__social a {
+  color: var(--silver);
+  transition: color 0.2s var(--ease);
+}
+
+.footer__social a:hover {
+  color: var(--white-pure);
+}
+
+/* --- Animations --- */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 102, 255, 0); }
+  50% { box-shadow: 0 0 24px 4px rgba(0, 102, 255, 0.15); }
+}
+
+/* Reveal base */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Reveal variants */
+.reveal--scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal--scale.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.reveal--left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal--left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal--right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal--right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Section header line decoration */
+.section__header .label::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--blue);
+  margin-top: 12px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-out) 0.3s;
+}
+
+.section__header.is-visible .label::after,
+.reveal.is-visible .label::after {
+  transform: scaleX(1);
+}
+
+/* Number counter animation */
+.platform-card__spec-value {
+  display: inline-block;
+}
+
+.platform-card.is-visible .platform-card__spec-value {
+  animation: countUp 0.6s var(--ease-out) 0.4s both;
+}
+
+/* Pillar icon float on hover */
+.pillar:hover .pillar__icon {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Blue glow pulse on CTA */
+.btn--primary {
+  position: relative;
+}
+
+.btn--primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  animation: pulseGlow 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Partner logo shimmer */
+.partners-logos span,
+.partners-logos img {
+  position: relative;
+}
+
+/* Smooth stagger for cards entering view */
+.pillars .pillar:nth-child(1) { transition-delay: 0.05s; }
+.pillars .pillar:nth-child(2) { transition-delay: 0.15s; }
+.pillars .pillar:nth-child(3) { transition-delay: 0.25s; }
+.pillars .pillar:nth-child(4) { transition-delay: 0.35s; }
+
+.markets .market-card:nth-child(1) { transition-delay: 0.05s; }
+.markets .market-card:nth-child(2) { transition-delay: 0.15s; }
+.markets .market-card:nth-child(3) { transition-delay: 0.25s; }
+.markets .market-card:nth-child(4) { transition-delay: 0.35s; }
+
+.platforms .platform-card:nth-child(1) { transition-delay: 0.05s; }
+.platforms .platform-card:nth-child(2) { transition-delay: 0.15s; }
+.platforms .platform-card:nth-child(3) { transition-delay: 0.25s; }
+.platforms .platform-card:nth-child(4) { transition-delay: 0.35s; }
+
+/* Hero title word-by-word split animation support */
+.hero__title .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.6s var(--ease-out) forwards;
+}
+
+/* Parallax-ready layer */
+.parallax {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* --- Holographic Global Effects --- */
+
+/* Silver gradient text for hero accent */
+.hero__title .highlight,
+.holo-text {
+  background: linear-gradient(135deg, #e0e0e0, #ffffff, #b0c4de, #e0e0e0, #ffffff);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: holoTextShift 6s ease-in-out infinite;
+}
+
+@keyframes holoTextShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Hero holographic orb decoration */
+.hero__holo-orb {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: radial-gradient(circle,
+    rgba(0, 102, 255, 0.08) 0%,
+    rgba(100, 160, 255, 0.04) 30%,
+    rgba(180, 200, 240, 0.02) 50%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  z-index: 0;
+  animation: orbFloat 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(-50%) scale(1); opacity: 0.6; }
+  50% { transform: translateY(-52%) scale(1.05); opacity: 1; }
+}
+
+/* Section holographic dividers */
+.holo-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(120, 160, 230, 0.15) 20%,
+    rgba(200, 220, 255, 0.3) 50%,
+    rgba(120, 160, 230, 0.15) 80%,
+    transparent 100%
+  );
+  margin: 0 auto;
+}
+
+/* Holographic button variant */
+.btn--holo {
+  background: linear-gradient(135deg, rgba(30, 40, 60, 0.8), rgba(20, 30, 50, 0.9));
+  color: var(--white-pure);
+  border: 1px solid rgba(140, 180, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--holo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s var(--ease-out);
+}
+
+.btn--holo:hover::before {
+  left: 130%;
+}
+
+.btn--holo:hover {
+  border-color: rgba(140, 180, 255, 0.3);
+  box-shadow: 0 4px 24px rgba(0, 60, 180, 0.15);
+}
+
+/* Silver stat numbers */
+.platform-card__spec-value {
+  background: linear-gradient(135deg, #e8e8e8, #ffffff, #c0cfe0, #ffffff);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: holoTextShift 4s ease-in-out infinite;
+}
+
+/* Holographic icon backgrounds */
+.pillar__icon {
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.08), rgba(100, 160, 255, 0.04));
+  border-radius: 12px;
+  border: 1px solid rgba(100, 160, 255, 0.08);
+}
+
+/* Market card holographic overlay on hover */
+.market-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(100, 160, 255, 0.05) 50%,
+    transparent 70%
+  );
+  background-size: 200% 200%;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+  pointer-events: none;
+}
+
+.market-card:hover::before {
+  opacity: 1;
+  animation: holoTextShift 3s ease-in-out infinite;
+}
+
+/* Partners holographic treatment */
+.partners-logos span {
+  transition: all 0.4s var(--ease);
+}
+
+.partners-logos span:hover {
+  background: linear-gradient(135deg, #c0c0c0, #ffffff, #a0b4cc, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.9 !important;
+}
+
+/* Noise texture overlay for depth */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  :root {
+    --section-pad: 80px;
+    --gap: 20px;
+  }
+
+  .container { padding: 0 32px; }
+  .header__inner { padding: 0 32px; }
+  .hero__content { padding: 0 32px; }
+
+  .pillars { grid-template-columns: repeat(2, 1fr); }
+  .markets { grid-template-columns: repeat(2, 1fr); }
+  .platforms { grid-template-columns: repeat(2, 1fr); }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-pad: 64px;
+    --header-h: 64px;
+  }
+
+  .container { padding: 0 20px; }
+  .header__inner { padding: 0 20px; }
+  .hero__content { padding: 0 20px; }
+
+  .header__nav { display: none; }
+  .header__cta { display: none; }
+  .header__menu-btn { display: flex; }
+
+  .pillars { grid-template-columns: 1fr; }
+  .markets { grid-template-columns: 1fr; }
+  .market-card { aspect-ratio: 16/9; }
+  .platforms { grid-template-columns: 1fr; }
+  .news-grid { grid-template-columns: 1fr; gap: 48px; }
+  .footer__grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer__bottom { flex-direction: column; gap: 16px; text-align: center; }
+
+  .hero__actions { flex-direction: column; }
+  .cta-banner__actions { flex-direction: column; align-items: center; }
+}
+
+/* ============================================================
+   WIREFRAME OVERRIDE — Client Review Mode
+   ============================================================ */
+
+:root {
+  --black: #ffffff;
+  --black-light: #f5f5f5;
+  --black-card: #eeeeee;
+  --silver: #888888;
+  --silver-light: #aaaaaa;
+  --white: #333333;
+  --white-pure: #111111;
+  --blue: #555555;
+  --blue-light: #666666;
+  --blue-dark: #444444;
+  --blue-glow: rgba(0,0,0,0.05);
+  --wf-border: #cccccc;
+}
+
+body { background: #f7f7f7 !important; color: #222 !important; }
+
+*, *::before, *::after { animation: none !important; transition: none !important; }
+
+.header__nav a, .btn, .hero__arrow { transition: background 0.15s, color 0.15s, border-color 0.15s !important; }
+
+/* HEADER */
+.header {
+  background: #ffffff !important;
+  border-bottom: 1.5px solid #ccc !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+.header__logo svg path { fill: #111 !important; }
+.header__nav a { color: #444 !important; }
+.header__nav a:hover { color: #111 !important; }
+.header__nav a::after { background: #111 !important; }
+.header__cta { background: #111 !important; color: #fff !important; border-radius: 3px !important; box-shadow: none !important; }
+.header__menu-btn span { background: #333 !important; }
+
+/* HERO */
+.hero {
+  background: #fff !important;
+  color: #111 !important;
+  border-bottom: 1.5px solid #ccc !important;
+  min-height: 85vh !important;
+}
+.hero__slide__bg { background: #ebebeb !important; }
+.hero__slide__overlay { background: none !important; }
+.hero__slide__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 12px, rgba(0,0,0,0.04) 12px, rgba(0,0,0,0.04) 13px);
+}
+.hero__holo-orb { display: none !important; }
+.hero__title, h1, h2, h3, h4 { color: #111 !important; opacity: 1 !important; transform: none !important; }
+.label, .hero__label { color: #555 !important; opacity: 1 !important; transform: none !important; }
+.subtitle, .hero__subtitle { color: #555 !important; opacity: 1 !important; transform: none !important; }
+.hero__actions { opacity: 1 !important; transform: none !important; }
+.hero__indicators button { background: #ccc !important; border: 1px solid #aaa !important; }
+.hero__indicators button.active::after { background: #444 !important; }
+.hero__arrow { background: #fff !important; border: 1.5px solid #aaa !important; box-shadow: none !important; color: #333 !important; }
+.hero__arrow:hover { background: #eee !important; transform: translateY(-50%) !important; }
+.hero__title .highlight, .holo-text { background: none !important; -webkit-background-clip: unset !important; -webkit-text-fill-color: #111 !important; background-clip: unset !important; }
+.hero__title .word { opacity: 1 !important; transform: none !important; }
+
+/* BUTTONS */
+.btn--primary { background: #222 !important; color: #fff !important; border: 1.5px solid #222 !important; border-radius: 3px !important; box-shadow: none !important; }
+.btn--primary::after { display: none !important; }
+.btn--primary:hover { background: #444 !important; }
+.btn--outline { background: transparent !important; color: #222 !important; border: 1.5px solid #888 !important; border-radius: 3px !important; }
+.btn--outline:hover { border-color: #222 !important; background: #f5f5f5 !important; }
+.hero .btn--outline { color: #222 !important; border-color: #aaa !important; }
+.btn--holo { background: #fff !important; border: 1.5px solid #aaa !important; color: #222 !important; box-shadow: none !important; }
+.btn--holo::before { display: none !important; }
+
+/* DIVIDERS */
+.holo-divider { background: #ccc !important; height: 1.5px !important; }
+.divider { background: #ccc !important; }
+
+/* SECTIONS */
+.section--dark { background: #ffffff !important; }
+.section--darker { background: #f9f9f9 !important; }
+.section::before { display: none !important; }
+.section__header .label::after { background: #aaa !important; transform: scaleX(1) !important; }
+
+/* Section ID badge */
+.section[id]::after, .hero::after {
+  content: attr(id);
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbb;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 2px 8px;
+  border-radius: 2px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* HOLO CARDS */
+.holo-card { background: #ffffff !important; border: 1.5px solid #ccc !important; border-radius: 4px !important; box-shadow: none !important; transform: none !important; }
+.holo-card::before, .holo-card::after, .holo-shimmer { display: none !important; }
+.holo-card:hover { border-color: #999 !important; box-shadow: none !important; transform: none !important; }
+.pillar .pillar__topline { background: #ccc !important; transform: scaleX(1) !important; }
+.pillar:hover .pillar__topline { background: #888 !important; }
+.pillar__icon { background: #f0f0f0 !important; border: 1.5px solid #ccc !important; color: #555 !important; }
+.pillar__title { color: #111 !important; }
+.pillar__headline { color: #555 !important; }
+.pillar__text { color: #555 !important; }
+
+/* MARKET CARDS */
+.market-card { border: 1.5px solid #ccc !important; border-radius: 4px !important; }
+.market-card__img > div { background: #e0e0e0 !important; }
+.market-card__img img { opacity: 0.2 !important; filter: grayscale(1) !important; }
+.market-card__img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 11px);
+}
+.market-card__overlay { background: linear-gradient(180deg, transparent 40%, rgba(240,240,240,0.97) 100%) !important; }
+.market-card:hover .market-card__overlay { background: linear-gradient(180deg, transparent 40%, rgba(230,230,230,0.97) 100%) !important; }
+.market-card::before { display: none !important; }
+.market-card__title { color: #111 !important; }
+.market-card__desc { color: #555 !important; }
+.market-card__link { color: #333 !important; opacity: 1 !important; transform: none !important; }
+
+/* PLATFORM CARDS */
+.platform-card { background: #ffffff !important; border: 1.5px solid #ccc !important; border-radius: 4px !important; box-shadow: none !important; }
+.platform-card__name { color: #555 !important; }
+.platform-card__title { color: #111 !important; }
+.platform-card__focus { color: #555 !important; }
+.platform-card__spec { border-top-color: #ccc !important; }
+.platform-card__spec-value { background: none !important; -webkit-background-clip: unset !important; -webkit-text-fill-color: #111 !important; background-clip: unset !important; color: #111 !important; }
+.platform-card__spec-unit { color: #555 !important; }
+
+/* NEWS */
+.news-item { border-bottom-color: #ccc !important; }
+.news-item:hover { padding-left: 0 !important; }
+.news-item__img { background: #e0e0e0 !important; border: 1.5px solid #ccc !important; }
+.news-item__date { color: #888 !important; }
+.news-item__title { color: #111 !important; }
+.whitepaper-item { background: #fff !important; border: 1.5px solid #ccc !important; border-radius: 4px !important; }
+.whitepaper-item__icon { background: #f0f0f0 !important; border: 1.5px solid #ccc !important; color: #555 !important; }
+.whitepaper-item__title { color: #111 !important; }
+.whitepaper-item__desc { color: #666 !important; }
+
+/* PARTNERS */
+.partners-logos span { color: #aaa !important; border: 1.5px dashed #ccc !important; padding: 8px 20px !important; border-radius: 3px !important; }
+.partners-logos span:hover { -webkit-text-fill-color: unset !important; background: none !important; color: #555 !important; border-color: #999 !important; opacity: 1 !important; }
+.partners-logos img { filter: grayscale(1) brightness(0.6) !important; opacity: 0.5 !important; }
+
+/* CTA BANNER */
+.cta-banner { background: #f5f5f5 !important; border-top: 1.5px solid #ccc !important; border-bottom: 1.5px solid #ccc !important; }
+.cta-banner h2 { color: #111 !important; }
+.cta-banner .subtitle { color: #555 !important; }
+
+/* FOOTER */
+.footer { background: #f9f9f9 !important; border-top: 1.5px solid #ccc !important; }
+.footer__brand p { color: #666 !important; }
+.footer__brand svg path { fill: #111 !important; }
+.footer__col-title { color: #888 !important; }
+.footer__links a { color: #555 !important; }
+.footer__links a:hover { color: #111 !important; }
+.footer__bottom { border-top-color: #ccc !important; }
+.footer__bottom p { color: #aaa !important; }
+.footer__social a { color: #888 !important; }
+.footer__social a:hover { color: #333 !important; }
+
+/* REVEAL — show all without animation */
+.reveal, .reveal--scale, .reveal--left, .reveal--right { opacity: 1 !important; transform: none !important; }
+
+</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="/" class="header__logo" aria-label="XING Mobility Home">
+        <svg width="80" height="139" viewBox="0 0 80 139" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 11.257V0L40.0028 29.4722L79.8085 0.0112683V11.2627L46.7404 35.9966L79.8085 60.5276V71.8917L40.0084 42.4984L0 72.0945V60.7192L33.0568 35.8782L0 11.257Z" fill="white"/>
+          <path d="M0 77.0413H4.24759V114.035H0V77.0413Z" fill="white"/>
+          <path d="M10.8443 77.0413H17.6945L37.9579 110.046V77.0413H42.166V114.035H35.5524L15.0412 80.8331V114.035H10.8499V77.0413H10.8443Z" fill="white"/>
+          <path d="M75.7411 88.1406V86.856C75.7411 83.1769 75.1271 81.7909 73.0822 81.1204C71.1499 80.4612 69.0487 80.3035 61.6238 80.3035C53.4892 80.3035 52.1541 81.8979 52.1541 91.3633V101.02C52.1541 105.026 52.5766 106.964 53.5962 108.294C55.0327 110.04 57.5283 110.548 65.1053 110.548C71.6457 110.548 73.2456 110.288 74.3553 109.105C75.1778 108.187 75.7411 106.305 75.7411 103.95V99.3976H65.3024V95.6058H79.9887V102.761C79.9887 107.066 79.3803 109.781 77.9832 111.472C76.1073 113.765 73.4934 114.339 65.1053 114.339C55.7369 114.339 53.2864 113.827 50.8302 111.41C48.8923 109.477 47.9121 106.711 47.9121 103.077V90.3942C47.9121 86.0841 48.0586 84.8108 48.9318 82.5571C49.7542 80.4612 51.3936 78.6245 53.2808 77.7456C55.2243 76.8328 57.1678 76.6244 63.4096 76.6244C71.5386 76.6244 74.2539 76.9906 76.5129 78.2583C77.9494 79.0245 79.0761 80.5626 79.3747 82.1515C79.7352 83.7516 79.7972 84.6023 79.831 88.1406H75.7355H75.7411Z" fill="white"/>
+          <path d="M79.9944 138.949H0V139H79.9944V138.949Z" fill="white"/>
+          <path d="M79.9944 126.205H0V126.256H79.9944V126.205Z" fill="white"/>
+        </svg>
+      </a>
+
+      <nav class="header__nav" id="mainNav">
+        <a href="#technology">Technology</a>
+        <a href="#platforms">Platforms</a>
+        <a href="#markets">Markets</a>
+        <a href="#company">Company</a>
+        <a href="#join">Join Us</a>
+      </nav>
+
+      <a href="#contact" class="header__cta">Contact Us</a>
+
+      <button class="header__menu-btn" id="menuBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+
+    <!-- Carousel Slides -->
+    <div class="hero__slides" aria-hidden="true">
+      <!-- Slide 1 -->
+      <div class="hero__slide is-active">
+        <div class="hero__slide__bg" style="background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 40%, #e8edf2 100%);"></div>
+        <div class="hero__slide__overlay" style="background: linear-gradient(120deg, rgba(255,255,255,0.6) 0%, rgba(220,232,246,0.25) 60%, transparent 100%);"></div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="hero__slide">
+        <div class="hero__slide__bg" style="background: linear-gradient(135deg, #f4f7fb 0%, #dce8f5 40%, #c8dff0 100%);"></div>
+        <div class="hero__slide__overlay" style="background: linear-gradient(120deg, rgba(255,255,255,0.7) 0%, rgba(180,210,240,0.3) 60%, transparent 100%);"></div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="hero__slide">
+        <div class="hero__slide__bg" style="background: linear-gradient(135deg, #f0f4fa 0%, #e0eaf5 40%, #ccd9ea 100%);"></div>
+        <div class="hero__slide__overlay" style="background: linear-gradient(120deg, rgba(255,255,255,0.65) 0%, rgba(160,200,240,0.28) 60%, transparent 100%);"></div>
+      </div>
+    </div>
+
+    <!-- Previous Arrow -->
+    <button class="hero__arrow hero__arrow--prev" id="heroPrev" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+
+    <!-- Next Arrow -->
+    <button class="hero__arrow hero__arrow--next" id="heroNext" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+
+    <div class="hero__content">
+      <p class="label hero__label">The Shift</p>
+      <h1 class="hero__title">This is Not aChemistry Problem.<br>It’s aSystems Revolution.</h1>
+      <p class="subtitle hero__subtitle">Today’s high-powerapps are throttled by astructural flaw. We returnedto the First Principle.</p>
+      <div class="hero__actions">
+        <a href="#technology" class="btn btn--primary">
+          Explore Technology
+          <svg class="btn__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn btn--outline">Get in Touch</a>
+      </div>
+    </div>
+
+    <div class="hero__holo-orb"></div>
+
+    <div class="hero__indicators">
+      <button class="active" aria-label="Slide 1"></button>
+      <button aria-label="Slide 2"></button>
+      <button aria-label="Slide 3"></button>
+    </div>
+  </section>
+
+  <div class="holo-divider"></div>
+
+  <!-- ========== WHY XING — 4 PILLARS ========== -->
+  <section class="section section--darker" id="why-xing">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="label">Why XING?</p>
+        <h2>The Four Pillars</h2>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar holo-card reveal reveal-delay-1">
+          <div class="pillar__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4 class="pillar__title">Intrinsic Safety</h4>
+          <p class="pillar__headline">Safety by Design</p>
+          <p class="pillar__text">Conventional systems react to fire; our first-principles architecture suppresses it at the cell level.</p>
+        </div>
+
+        <div class="pillar holo-card reveal reveal-delay-2">
+          <div class="pillar__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h4 class="pillar__title">Out-of-China Resilience</h4>
+          <p class="pillar__headline">Trusted Supply</p>
+          <p class="pillar__text">De-risk your programs with high-performance tech engineered and manufactured in Taiwan's secure ecosystem.</p>
+        </div>
+
+        <div class="pillar holo-card reveal reveal-delay-3">
+          <div class="pillar__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4"/><path d="M14 12h4"/><path d="M10 9v6"/><path d="M14 9v6"/></svg>
+          </div>
+          <h4 class="pillar__title">Strategic Optionality</h4>
+          <p class="pillar__headline">Future-Proof Choice</p>
+          <p class="pillar__text">Our cell-agnostic design allows you to plug in future chemistries without a total system redesign.</p>
+        </div>
+
+        <div class="pillar holo-card reveal reveal-delay-4">
+          <div class="pillar__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h4 class="pillar__title">High-Power Pedigree</h4>
+          <p class="pillar__headline">A Decade of Extremes</p>
+          <p class="pillar__text">For over 10 years, we've mastered the toughest high-voltage (800V+) systems — born on the track and proven in the field.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="holo-divider"></div>
+
+  <!-- ========== MARKETS & APPLICATIONS ========== -->
+  <section class="section section--dark" id="markets">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="label">Markets & Applications</p>
+        <h2>Dominating the Hardest, Highest-Value Segments</h2>
+        <p class="subtitle">XING wins where thermal limits break conventional systems — a $100B+ annual opportunity.</p>
+      </div>
+
+      <div class="markets">
+        <a href="#" class="market-card reveal reveal-delay-1">
+          <div class="market-card__img">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg, #0a1628 0%, #1a2a4a 100%);"></div>
+          </div>
+          <div class="market-card__overlay"></div>
+          <div class="market-card__content">
+            <h3 class="market-card__title">Mobility</h3>
+            <p class="market-card__desc">Power without the ceiling. Purpose-built for 800V platforms.</p>
+            <span class="market-card__link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="#" class="market-card reveal reveal-delay-2">
+          <div class="market-card__img">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg, #080818 0%, #141430 100%);"></div>
+          </div>
+          <div class="market-card__overlay"></div>
+          <div class="market-card__content">
+            <h3 class="market-card__title">AI Data Centers</h3>
+            <p class="market-card__desc">Backup for the liquid-cooled era. Delivering 1.2 MW per rack.</p>
+            <span class="market-card__link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="#" class="market-card reveal reveal-delay-3">
+          <div class="market-card__img">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg, #0a0a14 0%, #1a1a30 100%);"></div>
+          </div>
+          <div class="market-card__overlay"></div>
+          <div class="market-card__content">
+            <h3 class="market-card__title">Defense & UAV</h3>
+            <p class="market-card__desc">Secure tactical energy. Trusted, "Out-of-China" high-power density.</p>
+            <span class="market-card__link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="#" class="market-card reveal reveal-delay-4">
+          <div class="market-card__img">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg, #0a1020 0%, #162040 100%);"></div>
+          </div>
+          <div class="market-card__overlay"></div>
+          <div class="market-card__content">
+            <h3 class="market-card__title">ESS & Marine</h3>
+            <p class="market-card__desc">Safety without compromise. The only BESS "intrinsically safe" for hospitals.</p>
+            <span class="market-card__link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="holo-divider"></div>
+
+  <!-- ========== PLATFORMS ========== -->
+  <section class="section section--darker" id="platforms">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="label">Platforms</p>
+        <h2>Engineered for Extremes</h2>
+        <p class="subtitle">Built on a decade of immersion-cooling expertise, our platforms replace modular complexity with a holistic system where the coolant acts as the "bloodstream" of the battery.</p>
+      </div>
+
+      <div class="platforms">
+        <div class="platform-card holo-card reveal reveal-delay-1">
+          <p class="platform-card__name">IMMERSIO™ CTP</p>
+          <h3 class="platform-card__title">Cell-to-Pack</h3>
+          <p class="platform-card__focus">High-performance EV. Production-ready, module-free architecture featured in the Caterham Project V.</p>
+          <div class="platform-card__spec">
+            <span class="platform-card__spec-value">3,000</span>
+            <span class="platform-card__spec-unit">W/kg power density</span>
+          </div>
+        </div>
+
+        <div class="platform-card holo-card reveal reveal-delay-2">
+          <p class="platform-card__name">IMMERSIO™ CTC</p>
+          <h3 class="platform-card__title">Cell-to-Chassis</h3>
+          <p class="platform-card__focus">Automotive OEM vehicle integrated chassis. Battery directly into vehicle structure, increasing rigidity.</p>
+          <div class="platform-card__spec">
+            <span class="platform-card__spec-value">800V</span>
+            <span class="platform-card__spec-unit">high-voltage ready</span>
+          </div>
+        </div>
+
+        <div class="platform-card holo-card reveal reveal-delay-3">
+          <p class="platform-card__name">IMMERSIO™ BBU Series</p>
+          <h3 class="platform-card__title">Battery Backup Unit</h3>
+          <p class="platform-card__focus">AI Data Center backup. World's first HV immersion-cooled BBU for NVIDIA Rubin-class workloads.</p>
+          <div class="platform-card__spec">
+            <span class="platform-card__spec-value">1.2 MW</span>
+            <span class="platform-card__spec-unit">per rack</span>
+          </div>
+        </div>
+
+        <div class="platform-card holo-card reveal reveal-delay-4">
+          <p class="platform-card__name">IMMERSIO™ XBE Series</p>
+          <h3 class="platform-card__title">ESS & Marine</h3>
+          <p class="platform-card__focus">Safe for indoor, rooftop, and urban proximity-sensitive sites. DNV-grade marine design.</p>
+          <div class="platform-card__spec">
+            <span class="platform-card__spec-value">10-yr</span>
+            <span class="platform-card__spec-unit">warranty</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NEWS & WHITEPAPERS ========== -->
+  <section class="section section--dark" id="news">
+    <div class="container">
+      <div class="section__header reveal">
+        <p class="label">Newsroom</p>
+        <h2>Defining the High-Voltage Future</h2>
+      </div>
+
+      <div class="news-grid reveal">
+        <div>
+          <h3 style="font-size:1.125rem;margin-bottom:24px;color:var(--white-pure);">Latest News</h3>
+          <div class="news-list">
+            <a href="#" class="news-item">
+              <div class="news-item__img">
+                <div style="width:100%;height:100%;background:var(--black-card);"></div>
+              </div>
+              <div>
+                <p class="news-item__date">November 2025</p>
+                <p class="news-item__title">XING Mobility Launches 800V HVDC BBU Solutions at Super Computing 25</p>
+              </div>
+            </a>
+            <a href="#" class="news-item">
+              <div class="news-item__img">
+                <div style="width:100%;height:100%;background:var(--black-card);"></div>
+              </div>
+              <div>
+                <p class="news-item__date">September 2025</p>
+                <p class="news-item__title">IMMERSIO™ CTP Powers the Caterham Project V at IAA Mobility 2025</p>
+              </div>
+            </a>
+            <a href="#" class="news-item">
+              <div class="news-item__img">
+                <div style="width:100%;height:100%;background:var(--black-card);"></div>
+              </div>
+              <div>
+                <p class="news-item__date">March 2025</p>
+                <p class="news-item__title">Paradigm Factory Inauguration — World's First Immersion-Cooled Battery Production Facility</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-size:1.125rem;margin-bottom:24px;color:var(--white-pure);">Whitepapers</h3>
+          <div class="whitepaper-list">
+            <a href="#" class="whitepaper-item holo-card">
+              <div class="whitepaper-item__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <div>
+                <p class="whitepaper-item__title">Immersion Cooling Technology Overview</p>
+                <p class="whitepaper-item__desc">The science behind 100% thermal contact</p>
+              </div>
+            </a>
+            <a href="#" class="whitepaper-item holo-card">
+              <div class="whitepaper-item__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <div>
+                <p class="whitepaper-item__title">UL9540A Safety Certification Report</p>
+                <p class="whitepaper-item__desc">Active thermal runaway suppression results</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PARTNERS ========== -->
+  <section class="section section--darker" id="partners">
+    <div class="container">
+      <div class="section__header reveal" style="text-align:center;">
+        <p class="label">Global Partners</p>
+        <h2>Driving the Ecosystem Revolution Together</h2>
+      </div>
+      <div class="partners-logos reveal">
+        <!-- Partner logos placeholder — replace with actual SVGs/images -->
+        <span style="font-size:1.25rem;font-weight:700;color:var(--silver);opacity:0.4;">Caterham</span>
+        <span style="font-size:1.25rem;font-weight:700;color:var(--silver);opacity:0.4;">HKS</span>
+        <span style="font-size:1.25rem;font-weight:700;color:var(--silver);opacity:0.4;">Kubota</span>
+        <span style="font-size:1.25rem;font-weight:700;color:var(--silver);opacity:0.4;">AcBel</span>
+        <span style="font-size:1.25rem;font-weight:700;color:var(--silver);opacity:0.4;">Nordic Booster</span>
+        <span style="font-size:1.25rem;font-weight:700;color:var(--silver);opacity:0.4;">Castrol</span>
+        <span style="font-size:1.25rem;font-weight:700;color:var(--silver);opacity:0.4;">TotalEnergies</span>
+        <span style="font-size:1.25rem;font-weight:700;color:var(--silver);opacity:0.4;">ENEOS</span>
+        <span style="font-size:1.25rem;font-weight:700;color:var(--silver);opacity:0.4;">LG</span>
+        <span style="font-size:1.25rem;font-weight:700;color:var(--silver);opacity:0.4;">Panasonic</span>
+        <span style="font-size:1.25rem;font-weight:700;color:var(--silver);opacity:0.4;">SDS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA BANNER ========== -->
+  <section class="cta-banner" id="contact">
+    <div class="container reveal">
+      <p class="label" style="margin-bottom:16px;">Join the Revolution</p>
+      <h2>More Than a Battery.<br>A Movement in Progress.</h2>
+      <p class="subtitle">Revolutionary immersion-cooled battery technology. Engineered in Taiwan, trusted worldwide for electric vehicles, energy storage, and AI data centers.</p>
+      <div class="cta-banner__actions">
+        <a href="#" class="btn btn--primary">
+          Contact Us
+          <svg class="btn__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" class="btn btn--outline">View Careers</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <svg width="60" height="104" viewBox="0 0 80 139" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 11.257V0L40.0028 29.4722L79.8085 0.0112683V11.2627L46.7404 35.9966L79.8085 60.5276V71.8917L40.0084 42.4984L0 72.0945V60.7192L33.0568 35.8782L0 11.257Z" fill="white"/>
+            <path d="M0 77.0413H4.24759V114.035H0V77.0413Z" fill="white"/>
+            <path d="M10.8443 77.0413H17.6945L37.9579 110.046V77.0413H42.166V114.035H35.5524L15.0412 80.8331V114.035H10.8499V77.0413H10.8443Z" fill="white"/>
+            <path d="M75.7411 88.1406V86.856C75.7411 83.1769 75.1271 81.7909 73.0822 81.1204C71.1499 80.4612 69.0487 80.3035 61.6238 80.3035C53.4892 80.3035 52.1541 81.8979 52.1541 91.3633V101.02C52.1541 105.026 52.5766 106.964 53.5962 108.294C55.0327 110.04 57.5283 110.548 65.1053 110.548C71.6457 110.548 73.2456 110.288 74.3553 109.105C75.1778 108.187 75.7411 106.305 75.7411 103.95V99.3976H65.3024V95.6058H79.9887V102.761C79.9887 107.066 79.3803 109.781 77.9832 111.472C76.1073 113.765 73.4934 114.339 65.1053 114.339C55.7369 114.339 53.2864 113.827 50.8302 111.41C48.8923 109.477 47.9121 106.711 47.9121 103.077V90.3942C47.9121 86.0841 48.0586 84.8108 48.9318 82.5571C49.7542 80.4612 51.3936 78.6245 53.2808 77.7456C55.2243 76.8328 57.1678 76.6244 63.4096 76.6244C71.5386 76.6244 74.2539 76.9906 76.5129 78.2583C77.9494 79.0245 79.0761 80.5626 79.3747 82.1515C79.7352 83.7516 79.7972 84.6023 79.831 88.1406H75.7355H75.7411Z" fill="white"/>
+            <path d="M79.9944 138.949H0V139H79.9944V138.949Z" fill="white"/>
+            <path d="M79.9944 126.205H0V126.256H79.9944V126.205Z" fill="white"/>
+          </svg>
+          <p>Revolutionary immersion-cooled battery technology delivering unmatched power density, intrinsic safety, and manufacturing flexibility.</p>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Quick Links</p>
+          <div class="footer__links">
+            <a href="#">Technology</a>
+            <a href="#">Platforms</a>
+            <a href="#">Markets</a>
+            <a href="#">Company</a>
+            <a href="#">Newsroom</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Company</p>
+          <div class="footer__links">
+            <a href="#">About Us</a>
+            <a href="#">Careers</a>
+            <a href="#">Partnerships</a>
+            <a href="#">Paradigm Factory</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Contact</p>
+          <div class="footer__links">
+            <a href="#">Contact Us</a>
+            <a href="#">After Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2026 XING Mobility. All rights reserved.</p>
+        <div class="footer__social">
+          <a href="#" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== JS ========== -->
+  <script>
+/* ============================================
+   XING Mobility — Main JS
+   Animations & Interactions
+   ============================================ */
+
+// --- Scroll Reveal (all variants) ---
+const revealEls = document.querySelectorAll('.reveal, .reveal--scale, .reveal--left, .reveal--right');
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.12,
+  rootMargin: '0px 0px -60px 0px'
+});
+
+revealEls.forEach(el => revealObserver.observe(el));
+
+// --- Header: light/dark based on hero ---
+const header = document.getElementById('header');
+const heroSection = document.querySelector('.hero');
+
+const heroObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    header.classList.toggle('header--light', entry.isIntersecting);
+    // Reset inline bg so CSS class takes over
+    header.style.background = '';
+  });
+}, {
+  threshold: 0,
+  rootMargin: '-72px 0px 0px 0px'
+});
+
+heroObserver.observe(heroSection);
+
+// Header scroll solidify
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const isLight = header.classList.contains('header--light');
+  if (isLight) {
+    header.style.background = y > 50 ? 'rgba(255,255,255,0.97)' : '';
+  } else {
+    header.style.background = y > 100 ? 'rgba(10,10,10,0.97)' : '';
+  }
+}, { passive: true });
+
+// --- Hero: Word-by-word animation ---
+function splitWords(el) {
+  const text = el.innerHTML;
+  // Preserve <br> tags
+  const parts = text.split(/(<br\s*\/?>)/gi);
+  el.innerHTML = '';
+
+  let wordIndex = 0;
+  parts.forEach(part => {
+    if (part.match(/<br\s*\/?>/i)) {
+      el.appendChild(document.createElement('br'));
+    } else {
+      const words = part.trim().split(/\s+/);
+      words.forEach((word, i) => {
+        if (!word) return;
+        const span = document.createElement('span');
+        span.className = 'word';
+        span.textContent = word;
+        span.style.animationDelay = `${0.3 + wordIndex * 0.06}s`;
+        el.appendChild(span);
+        // Add space between words
+        if (i < words.length - 1) {
+          el.appendChild(document.createTextNode('\u00a0'));
+        }
+        wordIndex++;
+      });
+    }
+  });
+}
+
+const heroTitle = document.querySelector('.hero__title');
+const heroSubtitle = document.querySelector('.hero__subtitle');
+const heroLabel = document.querySelector('.hero__label');
+
+// Initial split
+splitWords(heroTitle);
+
+// --- Hero Carousel ---
+const indicators = document.querySelectorAll('.hero__indicators button');
+const heroSlides = document.querySelectorAll('.hero__slide');
+
+const slides = [
+  {
+    label: 'The Shift',
+    title: 'This is Not aChemistry Problem.<br>It’s aSystems Revolution.',
+    subtitle: 'Today’s high-powerapps are throttled by astructural flaw. We returnedto the First Principle.',
+  },
+  {
+    label: 'The Proof',
+    title: 'Taiwan\'s Most Advanced<br>Battery Platform.',
+    subtitle: 'XING Mobility\'s Paradigm Factory is the world\'s first facility dedicated to high-volume production of immersion-cooled battery packs.',
+  },
+  {
+    label: 'The Power',
+    title: 'The Global Powerhouse for Next-Gen<br>High-Voltage Battery Systems.',
+    subtitle: 'Performance, Safety, Reliability, and Geopolitical Resilience. The only partner capable of meeting the four critical demands of modern strategic infrastructure.',
+  }
+];
+
+let currentSlide = 0;
+let slideInterval;
+
+function goToSlide(index) {
+  // Deactivate old slide
+  heroSlides[currentSlide].classList.remove('is-active');
+  indicators[currentSlide].classList.remove('active');
+
+  currentSlide = index;
+
+  // Activate new slide
+  heroSlides[currentSlide].classList.add('is-active');
+  indicators[currentSlide].classList.add('active');
+
+  // Animate content out then in
+  const content = heroSection.querySelector('.hero__content');
+  content.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+  content.style.opacity = '0';
+  content.style.transform = 'translateY(12px)';
+
+  setTimeout(() => {
+    heroLabel.textContent = slides[currentSlide].label;
+    heroTitle.innerHTML = slides[currentSlide].title;
+    splitWords(heroTitle);
+    heroSubtitle.textContent = slides[currentSlide].subtitle;
+
+    content.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    content.style.opacity = '1';
+    content.style.transform = 'translateY(0)';
+  }, 400);
+}
+
+function nextSlide() {
+  goToSlide((currentSlide + 1) % slides.length);
+}
+
+function prevSlide() {
+  goToSlide((currentSlide - 1 + slides.length) % slides.length);
+}
+
+function startCarousel() {
+  slideInterval = setInterval(nextSlide, 6000);
+}
+
+indicators.forEach((btn, i) => {
+  btn.addEventListener('click', () => {
+    clearInterval(slideInterval);
+    goToSlide(i);
+    startCarousel();
+  });
+});
+
+// Arrow buttons
+const heroPrevBtn = document.getElementById('heroPrev');
+const heroNextBtn = document.getElementById('heroNext');
+
+if (heroPrevBtn) {
+  heroPrevBtn.addEventListener('click', () => {
+    clearInterval(slideInterval);
+    prevSlide();
+    startCarousel();
+  });
+}
+
+if (heroNextBtn) {
+  heroNextBtn.addEventListener('click', () => {
+    clearInterval(slideInterval);
+    nextSlide();
+    startCarousel();
+  });
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') { clearInterval(slideInterval); prevSlide(); startCarousel(); }
+  if (e.key === 'ArrowRight') { clearInterval(slideInterval); nextSlide(); startCarousel(); }
+});
+
+// Touch / swipe support
+let touchStartX = 0;
+heroSection.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+heroSection.addEventListener('touchend', (e) => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) {
+    clearInterval(slideInterval);
+    dx < 0 ? nextSlide() : prevSlide();
+    startCarousel();
+  }
+}, { passive: true });
+
+startCarousel();
+
+// --- Number Counter Animation ---
+const specValues = document.querySelectorAll('.platform-card__spec-value');
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const finalText = el.textContent.trim();
+      const numMatch = finalText.match(/[\d,.]+/);
+
+      if (numMatch) {
+        const numStr = numMatch[0];
+        const num = parseFloat(numStr.replace(/,/g, ''));
+        const suffix = finalText.replace(numStr, '');
+        const hasDecimal = numStr.includes('.');
+        const hasComma = numStr.includes(',');
+        const duration = 1200;
+        const startTime = performance.now();
+
+        function animate(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          let current = num * eased;
+
+          if (hasDecimal) {
+            current = current.toFixed(1);
+          } else {
+            current = Math.round(current);
+          }
+
+          if (hasComma) {
+            current = Number(current).toLocaleString();
+          }
+
+          el.textContent = current + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            el.textContent = finalText;
+          }
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+specValues.forEach(el => counterObserver.observe(el));
+
+// --- Parallax on Hero background ---
+const heroBg = document.querySelector('.hero__slides');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY < window.innerHeight) {
+    const offset = window.scrollY * 0.3;
+    if (heroBg) heroBg.style.transform = `translateY(${offset}px)`;
+  }
+}, { passive: true });
+
+// --- Magnetic hover on CTA buttons ---
+document.querySelectorAll('.btn--primary').forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+  });
+
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+    btn.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+    setTimeout(() => { btn.style.transition = ''; }, 400);
+  });
+});
+
+// --- Holographic Card System ---
+document.querySelectorAll('.holo-card').forEach(card => {
+  // Add shimmer element
+  const shimmer = document.createElement('div');
+  shimmer.className = 'holo-shimmer';
+  card.appendChild(shimmer);
+
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const px = (x / rect.width) * 100;
+    const py = (y / rect.height) * 100;
+    const rx = (x / rect.width - 0.5);
+    const ry = (y / rect.height - 0.5);
+
+    // Update CSS custom properties for radial gradients
+    card.style.setProperty('--holo-x', `${px}%`);
+    card.style.setProperty('--holo-y', `${py}%`);
+    card.style.setProperty('--holo-opacity', '1');
+
+    // 3D tilt + lift
+    card.style.transform = `perspective(800px) rotateY(${rx * 8}deg) rotateX(${-ry * 8}deg) translateY(-6px) scale(1.01)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.setProperty('--holo-opacity', '0');
+    card.style.transform = '';
+    card.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), --holo-opacity 0.4s ease';
+    setTimeout(() => { card.style.transition = ''; }, 600);
+  });
+});
+
+// --- Smooth cursor trail on hero (subtle glow) ---
+const heroContent = document.querySelector('.hero');
+let glowEl = null;
+
+heroContent.addEventListener('mouseenter', () => {
+  if (!glowEl) {
+    glowEl = document.createElement('div');
+    glowEl.style.cssText = `
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,102,255,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+      transition: transform 0.15s ease-out;
+    `;
+    heroContent.appendChild(glowEl);
+  }
+});
+
+heroContent.addEventListener('mousemove', (e) => {
+  if (glowEl) {
+    const rect = heroContent.getBoundingClientRect();
+    const x = e.clientX - rect.left - 200;
+    const y = e.clientY - rect.top - 200;
+    glowEl.style.transform = `translate(${x}px, ${y}px)`;
+  }
+});
+
+heroContent.addEventListener('mouseleave', () => {
+  if (glowEl) {
+    glowEl.remove();
+    glowEl = null;
+  }
+});
+
+// --- Mobile Menu ---
+const menuBtn = document.getElementById('menuBtn');
+const mainNav = document.getElementById('mainNav');
+
+if (menuBtn) {
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mainNav.style.display === 'flex';
+    if (isOpen) {
+      mainNav.removeAttribute('style');
+    } else {
+      mainNav.style.display = 'flex';
+      mainNav.style.position = 'fixed';
+      mainNav.style.top = 'var(--header-h)';
+      mainNav.style.left = '0';
+      mainNav.style.right = '0';
+      mainNav.style.bottom = '0';
+      mainNav.style.flexDirection = 'column';
+      mainNav.style.alignItems = 'center';
+      mainNav.style.justifyContent = 'center';
+      mainNav.style.background = 'rgba(10,10,10,0.98)';
+      mainNav.style.gap = '32px';
+      mainNav.style.zIndex = '999';
+    }
+  });
+}
+
+// --- Smooth scroll for nav links ---
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      if (window.innerWidth <= 768 && mainNav.style.position === 'fixed') {
+        mainNav.removeAttribute('style');
+      }
+    }
+  });
+});
+
+</script>
+</body>
+</html>
