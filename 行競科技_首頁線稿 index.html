@@ -644,11 +644,63 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.25rem); }
   line-height: 1.7;
 }
 
+/* --- Carousel Container & Navigation --- */
+.slider-container {
+  position: relative;
+  width: 100%;
+}
+
+.slider-nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  justify-content: flex-end;
+}
+
+.slider-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white-pure);
+  transition: all 0.3s var(--ease);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.slider-btn:hover {
+  background: var(--blue);
+  border-color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.2);
+}
+
+.slider-btn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.slider-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
 /* --- Markets Grid --- */
 .markets {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
   gap: var(--gap);
+  overflow-x: auto;
+  padding-bottom: 24px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.markets::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
 
 .market-card {
@@ -657,6 +709,7 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.25rem); }
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
+  flex: 0 0 300px; /* Fixed width for horizontal scroll */
 }
 
 .market-card__img {
@@ -727,15 +780,46 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.25rem); }
 
 /* --- Platforms --- */
 .platforms {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
   gap: var(--gap);
+  overflow-x: auto;
+  padding-bottom: 24px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.platforms::-webkit-scrollbar {
+  display: none;
 }
 
 .platform-card {
   padding: 40px 28px;
   display: flex;
   flex-direction: column;
+  flex: 0 0 320px; /* Fixed width for horizontal scroll */
+  cursor: pointer;
+  transition: transform 0.4s var(--ease-out), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.platform-card:active {
+  transform: scale(0.98);
+}
+
+.platform-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin-top: 24px;
+  opacity: 0.8;
+  transition: all 0.3s var(--ease-out);
+}
+
+.platform-card:hover .platform-card__link {
+  opacity: 1;
+  transform: translateX(4px);
 }
 
 .platform-card__name {
@@ -783,17 +867,57 @@ h4 { font-size: clamp(1rem, 1.5vw, 1.25rem); }
   color: var(--silver);
 }
 
-/* --- News & Whitepapers --- */
-.news-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
+/* --- News & Whitepapers Redesign --- */
+.news-section-block {
+  margin-bottom: 80px;
+}
+
+.news-section-block:last-child {
+  margin-bottom: 0;
+}
+
+.news-section-title {
+  font-size: 1.25rem;
+  margin-bottom: 32px;
+  color: var(--white-pure);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.news-section-title::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .news-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 992px) {
+  .news-list { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .news-list { grid-template-columns: 1fr; }
+}
+
+.whitepaper-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .whitepaper-list { grid-template-columns: 1fr; }
+}
+
+.hidden {
+  display: none !important;
 }
 
 .news-item {
@@ -1708,66 +1832,107 @@ body { background: #f7f7f7 !important; color: #222 !important; }
         <p class="subtitle">XING wins where thermal limits break conventional systems — a $100B+ annual opportunity.</p>
       </div>
 
-      <div class="markets">
-        <a href="#" class="market-card reveal reveal-delay-1">
-          <div class="market-card__img">
-            <div style="width:100%;height:100%;background:linear-gradient(135deg, #0a1628 0%, #1a2a4a 100%);"></div>
-          </div>
-          <div class="market-card__overlay"></div>
-          <div class="market-card__content">
-            <h3 class="market-card__title">Mobility</h3>
-            <p class="market-card__desc">Power without the ceiling. Purpose-built for 800V platforms.</p>
-            <span class="market-card__link">
-              Learn More
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </a>
+      <div class="slider-container">
+        <div class="markets" id="marketsSlider">
+          <a href="product.html" class="market-card reveal reveal-delay-1">
+            <div class="market-card__img">
+              <div style="width:100%;height:100%;background:linear-gradient(135deg, #0a1628 0%, #1a2a4a 100%);"></div>
+            </div>
+            <div class="market-card__overlay"></div>
+            <div class="market-card__content">
+              <h3 class="market-card__title">Mobility</h3>
+              <p class="market-card__desc">Power without the ceiling. Purpose-built for 800V platforms.</p>
+              <span class="market-card__link">
+                Learn More
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
 
-        <a href="#" class="market-card reveal reveal-delay-2">
-          <div class="market-card__img">
-            <div style="width:100%;height:100%;background:linear-gradient(135deg, #080818 0%, #141430 100%);"></div>
-          </div>
-          <div class="market-card__overlay"></div>
-          <div class="market-card__content">
-            <h3 class="market-card__title">AI Data Centers</h3>
-            <p class="market-card__desc">Backup for the liquid-cooled era. Delivering 1.2 MW per rack.</p>
-            <span class="market-card__link">
-              Learn More
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </a>
+          <a href="product.html" class="market-card reveal reveal-delay-2">
+            <div class="market-card__img">
+              <div style="width:100%;height:100%;background:linear-gradient(135deg, #080818 0%, #141430 100%);"></div>
+            </div>
+            <div class="market-card__overlay"></div>
+            <div class="market-card__content">
+              <h3 class="market-card__title">AI Data Centers</h3>
+              <p class="market-card__desc">Backup for the liquid-cooled era. Delivering 1.2 MW per rack.</p>
+              <span class="market-card__link">
+                Learn More
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
 
-        <a href="#" class="market-card reveal reveal-delay-3">
-          <div class="market-card__img">
-            <div style="width:100%;height:100%;background:linear-gradient(135deg, #0a0a14 0%, #1a1a30 100%);"></div>
-          </div>
-          <div class="market-card__overlay"></div>
-          <div class="market-card__content">
-            <h3 class="market-card__title">Defense & UAV</h3>
-            <p class="market-card__desc">Secure tactical energy. Trusted, "Out-of-China" high-power density.</p>
-            <span class="market-card__link">
-              Learn More
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </a>
+          <a href="product.html" class="market-card reveal reveal-delay-3">
+            <div class="market-card__img">
+              <div style="width:100%;height:100%;background:linear-gradient(135deg, #0a0a14 0%, #1a1a30 100%);"></div>
+            </div>
+            <div class="market-card__overlay"></div>
+            <div class="market-card__content">
+              <h3 class="market-card__title">Defense & UAV</h3>
+              <p class="market-card__desc">Secure tactical energy. Trusted, "Out-of-China" high-power density.</p>
+              <span class="market-card__link">
+                Learn More
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
 
-        <a href="#" class="market-card reveal reveal-delay-4">
-          <div class="market-card__img">
-            <div style="width:100%;height:100%;background:linear-gradient(135deg, #0a1020 0%, #162040 100%);"></div>
-          </div>
-          <div class="market-card__overlay"></div>
-          <div class="market-card__content">
-            <h3 class="market-card__title">ESS & Marine</h3>
-            <p class="market-card__desc">Safety without compromise. The only BESS "intrinsically safe" for hospitals.</p>
-            <span class="market-card__link">
-              Learn More
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </a>
+          <a href="product.html" class="market-card reveal reveal-delay-4">
+            <div class="market-card__img">
+              <div style="width:100%;height:100%;background:linear-gradient(135deg, #0a1020 0%, #162040 100%);"></div>
+            </div>
+            <div class="market-card__overlay"></div>
+            <div class="market-card__content">
+              <h3 class="market-card__title">ESS & Marine</h3>
+              <p class="market-card__desc">Safety without compromise. The only BESS "intrinsically safe" for hospitals.</p>
+              <span class="market-card__link">
+                Learn More
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Additional Placeholders -->
+          <a href="product.html" class="market-card reveal">
+            <div class="market-card__img">
+              <div style="width:100%;height:100%;background:linear-gradient(135deg, #101010 0%, #202020 100%);"></div>
+            </div>
+            <div class="market-card__overlay"></div>
+            <div class="market-card__content">
+              <h3 class="market-card__title">Industrial & Mining</h3>
+              <p class="market-card__desc">Extreme durability for the harshest environments on earth.</p>
+              <span class="market-card__link">
+                Learn More
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="product.html" class="market-card reveal">
+            <div class="market-card__img">
+              <div style="width:100%;height:100%;background:linear-gradient(135deg, #051005 0%, #102010 100%);"></div>
+            </div>
+            <div class="market-card__overlay"></div>
+            <div class="market-card__content">
+              <h3 class="market-card__title">Agriculture</h3>
+              <p class="market-card__desc">Zero-emission power for the next generation of farming machinery.</p>
+              <span class="market-card__link">
+                Learn More
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+        <div class="slider-nav">
+          <button class="slider-btn" id="marketsPrev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          </button>
+          <button class="slider-btn" id="marketsNext" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -1783,45 +1948,100 @@ body { background: #f7f7f7 !important; color: #222 !important; }
         <p class="subtitle">Built on a decade of immersion-cooling expertise, our platforms replace modular complexity with a holistic system where the coolant acts as the "bloodstream" of the battery.</p>
       </div>
 
-      <div class="platforms">
-        <div class="platform-card holo-card reveal reveal-delay-1">
-          <p class="platform-card__name">IMMERSIO™ CTP</p>
-          <h3 class="platform-card__title">Cell-to-Pack</h3>
-          <p class="platform-card__focus">High-performance EV. Production-ready, module-free architecture featured in the Caterham Project V.</p>
-          <div class="platform-card__spec">
-            <span class="platform-card__spec-value">3,000</span>
-            <span class="platform-card__spec-unit">W/kg power density</span>
-          </div>
-        </div>
+      <div class="slider-container">
+        <div class="platforms" id="platformsSlider">
+          <a href="product.html" class="platform-card holo-card reveal reveal-delay-1">
+            <p class="platform-card__name">IMMERSIO™ CTP</p>
+            <h3 class="platform-card__title">Cell-to-Pack</h3>
+            <p class="platform-card__focus">High-performance EV. Production-ready, module-free architecture featured in the Caterham Project V.</p>
+            <div class="platform-card__spec">
+              <span class="platform-card__spec-value">3,000</span>
+              <span class="platform-card__spec-unit">W/kg power density</span>
+            </div>
+            <span class="platform-card__link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
 
-        <div class="platform-card holo-card reveal reveal-delay-2">
-          <p class="platform-card__name">IMMERSIO™ CTC</p>
-          <h3 class="platform-card__title">Cell-to-Chassis</h3>
-          <p class="platform-card__focus">Automotive OEM vehicle integrated chassis. Battery directly into vehicle structure, increasing rigidity.</p>
-          <div class="platform-card__spec">
-            <span class="platform-card__spec-value">800V</span>
-            <span class="platform-card__spec-unit">high-voltage ready</span>
-          </div>
-        </div>
+          <a href="product.html" class="platform-card holo-card reveal reveal-delay-2">
+            <p class="platform-card__name">IMMERSIO™ CTC</p>
+            <h3 class="platform-card__title">Cell-to-Chassis</h3>
+            <p class="platform-card__focus">Automotive OEM vehicle integrated chassis. Battery directly into vehicle structure, increasing rigidity.</p>
+            <div class="platform-card__spec">
+              <span class="platform-card__spec-value">800V</span>
+              <span class="platform-card__spec-unit">high-voltage ready</span>
+            </div>
+            <span class="platform-card__link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
 
-        <div class="platform-card holo-card reveal reveal-delay-3">
-          <p class="platform-card__name">IMMERSIO™ BBU Series</p>
-          <h3 class="platform-card__title">Battery Backup Unit</h3>
-          <p class="platform-card__focus">AI Data Center backup. World's first HV immersion-cooled BBU for NVIDIA Rubin-class workloads.</p>
-          <div class="platform-card__spec">
-            <span class="platform-card__spec-value">1.2 MW</span>
-            <span class="platform-card__spec-unit">per rack</span>
-          </div>
-        </div>
+          <a href="product.html" class="platform-card holo-card reveal reveal-delay-3">
+            <p class="platform-card__name">IMMERSIO™ BBU Series</p>
+            <h3 class="platform-card__title">Battery Backup Unit</h3>
+            <p class="platform-card__focus">AI Data Center backup. World's first HV immersion-cooled BBU for NVIDIA Rubin-class workloads.</p>
+            <div class="platform-card__spec">
+              <span class="platform-card__spec-value">1.2 MW</span>
+              <span class="platform-card__spec-unit">per rack</span>
+            </div>
+            <span class="platform-card__link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
 
-        <div class="platform-card holo-card reveal reveal-delay-4">
-          <p class="platform-card__name">IMMERSIO™ XBE Series</p>
-          <h3 class="platform-card__title">ESS & Marine</h3>
-          <p class="platform-card__focus">Safe for indoor, rooftop, and urban proximity-sensitive sites. DNV-grade marine design.</p>
-          <div class="platform-card__spec">
-            <span class="platform-card__spec-value">10-yr</span>
-            <span class="platform-card__spec-unit">warranty</span>
-          </div>
+          <a href="product.html" class="platform-card holo-card reveal reveal-delay-4">
+            <p class="platform-card__name">IMMERSIO™ XBE Series</p>
+            <h3 class="platform-card__title">ESS & Marine</h3>
+            <p class="platform-card__focus">Safe for indoor, rooftop, and urban proximity-sensitive sites. DNV-grade marine design.</p>
+            <div class="platform-card__spec">
+              <span class="platform-card__spec-value">10-yr</span>
+              <span class="platform-card__spec-unit">warranty</span>
+            </div>
+            <span class="platform-card__link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+
+          <!-- Additional Placeholders -->
+          <a href="product.html" class="platform-card holo-card reveal">
+            <p class="platform-card__name">IMMERSIO™ M-Series</p>
+            <h3 class="platform-card__title">Modular Systems</h3>
+            <p class="platform-card__focus">Quick-to-market modular solutions for specialized vehicle fleets and prototypes.</p>
+            <div class="platform-card__spec">
+              <span class="platform-card__spec-value">Standard</span>
+              <span class="platform-card__spec-unit">form factor</span>
+            </div>
+            <span class="platform-card__link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+
+          <a href="product.html" class="platform-card holo-card reveal">
+            <p class="platform-card__name">Custom Engineering</p>
+            <h3 class="platform-card__title">Specialized Storage</h3>
+            <p class="platform-card__focus">Bespoke battery systems engineered for unique space and power requirements.</p>
+            <div class="platform-card__spec">
+              <span class="platform-card__spec-value">Bespoke</span>
+              <span class="platform-card__spec-unit">designs</span>
+            </div>
+            <span class="platform-card__link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        </div>
+        <div class="slider-nav">
+          <button class="slider-btn" id="platformsPrev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          </button>
+          <button class="slider-btn" id="platformsNext" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -1835,62 +2055,87 @@ body { background: #f7f7f7 !important; color: #222 !important; }
         <h2>Defining the High-Voltage Future</h2>
       </div>
 
-      <div class="news-grid reveal">
-        <div>
-          <h3 style="font-size:1.125rem;margin-bottom:24px;color:var(--white-pure);">Latest News</h3>
-          <div class="news-list">
-            <a href="#" class="news-item">
-              <div class="news-item__img">
-                <div style="width:100%;height:100%;background:var(--black-card);"></div>
-              </div>
-              <div>
-                <p class="news-item__date">November 2025</p>
-                <p class="news-item__title">XING Mobility Launches 800V HVDC BBU Solutions at Super Computing 25</p>
-              </div>
-            </a>
-            <a href="#" class="news-item">
-              <div class="news-item__img">
-                <div style="width:100%;height:100%;background:var(--black-card);"></div>
-              </div>
-              <div>
-                <p class="news-item__date">September 2025</p>
-                <p class="news-item__title">IMMERSIO™ CTP Powers the Caterham Project V at IAA Mobility 2025</p>
-              </div>
-            </a>
-            <a href="#" class="news-item">
-              <div class="news-item__img">
-                <div style="width:100%;height:100%;background:var(--black-card);"></div>
-              </div>
-              <div>
-                <p class="news-item__date">March 2025</p>
-                <p class="news-item__title">Paradigm Factory Inauguration — World's First Immersion-Cooled Battery Production Facility</p>
-              </div>
-            </a>
-          </div>
+      <div class="news-section-block reveal">
+        <h3 class="news-section-title">Latest News</h3>
+        <div class="news-list">
+          <a href="#" class="news-item">
+            <div class="news-item__img">
+              <div style="width:100%;height:100%;background:var(--black-card);"></div>
+            </div>
+            <div>
+              <p class="news-item__date">November 2025</p>
+              <p class="news-item__title">XING Mobility Launches 800V HVDC BBU Solutions at Super Computing 25</p>
+            </div>
+          </a>
+          <a href="#" class="news-item">
+            <div class="news-item__img">
+              <div style="width:100%;height:100%;background:var(--black-card);"></div>
+            </div>
+            <div>
+              <p class="news-item__date">September 2025</p>
+              <p class="news-item__title">IMMERSIO™ CTP Powers the Caterham Project V at IAA Mobility 2025</p>
+            </div>
+          </a>
+          <a href="#" class="news-item">
+            <div class="news-item__img">
+              <div style="width:100%;height:100%;background:var(--black-card);"></div>
+            </div>
+            <div>
+              <p class="news-item__date">March 2025</p>
+              <p class="news-item__title">Paradigm Factory Inauguration — World's First Immersion-Cooled Battery Production Facility</p>
+            </div>
+          </a>
+          <a href="#" class="news-item">
+            <div class="news-item__img">
+              <div style="width:100%;height:100%;background:var(--black-card);"></div>
+            </div>
+            <div>
+              <p class="news-item__date">January 2025</p>
+              <p class="news-item__title">Strategic Partnership with Castrol to Advance Immersion Cooling Fluids</p>
+            </div>
+          </a>
+          <a href="#" class="news-item">
+            <div class="news-item__img">
+              <div style="width:100%;height:100%;background:var(--black-card);"></div>
+            </div>
+            <div>
+              <p class="news-item__date">December 2024</p>
+              <p class="news-item__title">XING Mobility Awarded "Innovation of the Year" at Battery Tech Expo</p>
+            </div>
+          </a>
+          <a href="#" class="news-item">
+            <div class="news-item__img">
+              <div style="width:100%;height:100%;background:var(--black-card);"></div>
+            </div>
+            <div>
+              <p class="news-item__date">October 2024</p>
+              <p class="news-item__title">Expanding Global Reach: New Office Opening in Stuttgart, Germany</p>
+            </div>
+          </a>
         </div>
+      </div>
 
-        <div>
-          <h3 style="font-size:1.125rem;margin-bottom:24px;color:var(--white-pure);">Whitepapers</h3>
-          <div class="whitepaper-list">
-            <a href="#" class="whitepaper-item holo-card">
-              <div class="whitepaper-item__icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div>
-                <p class="whitepaper-item__title">Immersion Cooling Technology Overview</p>
-                <p class="whitepaper-item__desc">The science behind 100% thermal contact</p>
-              </div>
-            </a>
-            <a href="#" class="whitepaper-item holo-card">
-              <div class="whitepaper-item__icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div>
-                <p class="whitepaper-item__title">UL9540A Safety Certification Report</p>
-                <p class="whitepaper-item__desc">Active thermal runaway suppression results</p>
-              </div>
-            </a>
-          </div>
+      <div class="news-section-block reveal" id="whitepapers-block">
+        <h3 class="news-section-title">Whitepapers</h3>
+        <div class="whitepaper-list">
+          <a href="#" class="whitepaper-item holo-card">
+            <div class="whitepaper-item__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div>
+              <p class="whitepaper-item__title">Immersion Cooling Technology Overview</p>
+              <p class="whitepaper-item__desc">The science behind 100% thermal contact</p>
+            </div>
+          </a>
+          <a href="#" class="whitepaper-item holo-card">
+            <div class="whitepaper-item__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div>
+              <p class="whitepaper-item__title">UL9540A Safety Certification Report</p>
+              <p class="whitepaper-item__desc">Active thermal runaway suppression results</p>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -2188,6 +2433,39 @@ heroSection.addEventListener('touchend', (e) => {
 }, { passive: true });
 
 startCarousel();
+
+// --- Horizontal Card Slider ---
+function initSlider(sliderId, prevBtnId, nextBtnId) {
+  const slider = document.getElementById(sliderId);
+  const prevBtn = document.getElementById(prevBtnId);
+  const nextBtn = document.getElementById(nextBtnId);
+
+  if (!slider || !prevBtn || !nextBtn) return;
+
+  const scrollAmount = 340; // Card width + gap approximate
+
+  const updateButtons = () => {
+    prevBtn.disabled = slider.scrollLeft <= 0;
+    nextBtn.disabled = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10;
+  };
+
+  prevBtn.addEventListener('click', () => {
+    slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  slider.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
+  
+  // Initial check
+  updateButtons();
+}
+
+initSlider('marketsSlider', 'marketsPrev', 'marketsNext');
+initSlider('platformsSlider', 'platformsPrev', 'platformsNext');
 
 // --- Number Counter Animation ---
 const specValues = document.querySelectorAll('.platform-card__spec-value');
